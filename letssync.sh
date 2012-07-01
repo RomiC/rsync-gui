@@ -70,9 +70,6 @@ echo $password > $HOME/.rsyncpass
 # Setup sasafity permission to the file with password
 chmod 640 $HOME/.rsyncpass
 
-echo "$rsync --update --progress --times --exclude-from $HOME/.rsyncexclude --recursive --stats --password-file=$HOME/.rsyncpass $folder/ rsync://$login@tech.tdigitals.ru/dropbox/"
-exit
-
 # Creating file with exclude rules
 echo ".*" > $HOME/.rsyncexclude
 
@@ -80,7 +77,7 @@ echo ".*" > $HOME/.rsyncexclude
 rsync=`whereis rsync`
 
 # First sync
-echo "First syncronization. Please wait..."
+echo "First sync. Please wait..."
 $rsync --update --progress --times --exclude-from $HOME/.rsyncexclude --recursive --stats --password-file=$HOME/.rsyncpass $folder/ rsync://$login@tech.tdigitals.ru/dropbox/
 
 # Creating crontab-file

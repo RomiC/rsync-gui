@@ -9,6 +9,8 @@
 # WARNING! All changes made in this file will be lost!
 import sys, os
 from PyQt4 import QtCore, QtGui
+from datetime import datetime
+from subprocess import Popen, PIPE
 
 try:
 	_fromUtf8 = QtCore.QString.fromUtf8
@@ -21,41 +23,43 @@ class Ui_MainWindow(object):
 		MainWindow.resize(300, 270)
 		self.centralwidget = QtGui.QWidget(MainWindow)
 		self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
-		self.saveButton = QtGui.QPushButton(self.centralwidget)
-		self.saveButton.setGeometry(QtCore.QRect(120, 235, 71, 32))
-		self.saveButton.setObjectName(_fromUtf8("saveButton"))
-		self.lineEdit = QtGui.QLineEdit(self.centralwidget)
-		self.lineEdit.setGeometry(QtCore.QRect(130, 10, 131, 23))
-		self.lineEdit.setObjectName(_fromUtf8("lineEdit"))
-		self.toolButton = QtGui.QToolButton(self.centralwidget)
-		self.toolButton.setGeometry(QtCore.QRect(263, 10, 27, 23))
-		self.toolButton.setToolButtonStyle(QtCore.Qt.ToolButtonIconOnly)
-		self.toolButton.setAutoRaise(False)
-		self.toolButton.setArrowType(QtCore.Qt.NoArrow)
-		self.toolButton.setObjectName(_fromUtf8("toolButton"))
-		self.label_2 = QtGui.QLabel(self.centralwidget)
-		self.label_2.setGeometry(QtCore.QRect(10, 13, 101, 16))
-		self.label_2.setObjectName(_fromUtf8("label_2"))
-		self.scrollArea = QtGui.QScrollArea(self.centralwidget)
-		self.scrollArea.setGeometry(QtCore.QRect(10, 105, 281, 121))
-		self.scrollArea.setWidgetResizable(True)
-		self.scrollArea.setObjectName(_fromUtf8("scrollArea"))
-		self.scrollAreaWidgetContents = QtGui.QWidget()
-		self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 279, 119))
-		self.scrollAreaWidgetContents.setObjectName(_fromUtf8("scrollAreaWidgetContents"))
-		self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-		self.lineEdit_2 = QtGui.QLineEdit(self.centralwidget)
-		self.lineEdit_2.setGeometry(QtCore.QRect(130, 40, 161, 23))
-		self.lineEdit_2.setObjectName(_fromUtf8("lineEdit_2"))
-		self.lineEdit_3 = QtGui.QLineEdit(self.centralwidget)
-		self.lineEdit_3.setGeometry(QtCore.QRect(130, 70, 161, 23))
-		self.lineEdit_3.setObjectName(_fromUtf8("lineEdit_3"))
-		self.label_3 = QtGui.QLabel(self.centralwidget)
-		self.label_3.setGeometry(QtCore.QRect(10, 42, 62, 16))
-		self.label_3.setObjectName(_fromUtf8("label_3"))
-		self.label_4 = QtGui.QLabel(self.centralwidget)
-		self.label_4.setGeometry(QtCore.QRect(10, 72, 62, 16))
-		self.label_4.setObjectName(_fromUtf8("label_4"))
+		self.buttonSave = QtGui.QPushButton(self.centralwidget)
+		self.buttonSave.setGeometry(QtCore.QRect(120, 235, 71, 32))
+		self.buttonSave.setObjectName(_fromUtf8("buttonSave"))
+		self.inputFolder = QtGui.QLineEdit(self.centralwidget)
+		self.inputFolder.setGeometry(QtCore.QRect(130, 10, 131, 23))
+		self.inputFolder.setObjectName(_fromUtf8("inputFolder"))
+		self.buttonSelectFolder = QtGui.QToolButton(self.centralwidget)
+		self.buttonSelectFolder.setGeometry(QtCore.QRect(263, 10, 27, 23))
+		self.buttonSelectFolder.setToolButtonStyle(QtCore.Qt.ToolButtonIconOnly)
+		self.buttonSelectFolder.setAutoRaise(False)
+		self.buttonSelectFolder.setArrowType(QtCore.Qt.NoArrow)
+		self.buttonSelectFolder.setObjectName(_fromUtf8("buttonSelectFolder"))
+		self.labelFolder = QtGui.QLabel(self.centralwidget)
+		self.labelFolder.setGeometry(QtCore.QRect(10, 13, 101, 16))
+		self.labelFolder.setObjectName(_fromUtf8("labelFolder"))
+		self.inputLogin = QtGui.QLineEdit(self.centralwidget)
+		self.inputLogin.setGeometry(QtCore.QRect(130, 40, 161, 23))
+		self.inputLogin.setObjectName(_fromUtf8("inputLogin"))
+		self.inputPassword = QtGui.QLineEdit(self.centralwidget)
+		self.inputPassword.setGeometry(QtCore.QRect(130, 70, 161, 23))
+		self.inputPassword.setObjectName(_fromUtf8("inputPassword"))
+		self.labelLogin = QtGui.QLabel(self.centralwidget)
+		self.labelLogin.setGeometry(QtCore.QRect(10, 42, 62, 16))
+		self.labelLogin.setObjectName(_fromUtf8("labelLogin"))
+		self.labelPassword = QtGui.QLabel(self.centralwidget)
+		self.labelPassword.setGeometry(QtCore.QRect(10, 72, 62, 16))
+		self.labelPassword.setObjectName(_fromUtf8("labelPassword"))
+		self.output = QtGui.QPlainTextEdit(self.centralwidget)
+		self.output.setEnabled(True)
+		self.output.setGeometry(QtCore.QRect(10, 100, 281, 131))
+		self.output.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.IBeamCursor))
+		self.output.setFrameShape(QtGui.QFrame.StyledPanel)
+		self.output.setReadOnly(True)
+		self.output.setObjectName(_fromUtf8("output"))
+		font = QtGui.QApplication.font()
+		font.setPointSize(11)
+		self.output.setFont(font)
 		MainWindow.setCentralWidget(self.centralwidget)
 
 		self.retranslateUi(MainWindow)
@@ -63,26 +67,56 @@ class Ui_MainWindow(object):
 		QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
 	def retranslateUi(self, MainWindow):
-		MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "TDS dropbox", None, QtGui.QApplication.UnicodeUTF8))
-		self.saveButton.setText(QtGui.QApplication.translate("MainWindow", "Save", None, QtGui.QApplication.UnicodeUTF8))
-		self.toolButton.setText(QtGui.QApplication.translate("MainWindow", "...", None, QtGui.QApplication.UnicodeUTF8))
-		self.label_2.setText(QtGui.QApplication.translate("MainWindow", "Folder to sync", None, QtGui.QApplication.UnicodeUTF8))
-		self.label_3.setText(QtGui.QApplication.translate("MainWindow", "Login", None, QtGui.QApplication.UnicodeUTF8))
-		self.label_4.setText(QtGui.QApplication.translate("MainWindow", "Password", None, QtGui.QApplication.UnicodeUTF8))
+		MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "TDS Dropbox setup", None, QtGui.QApplication.UnicodeUTF8))
+		self.buttonSave.setText(QtGui.QApplication.translate("MainWindow", "Save", None, QtGui.QApplication.UnicodeUTF8))
+		self.buttonSelectFolder.setText(QtGui.QApplication.translate("MainWindow", "...", None, QtGui.QApplication.UnicodeUTF8))
+		self.labelFolder.setText(QtGui.QApplication.translate("MainWindow", "Folder to sync", None, QtGui.QApplication.UnicodeUTF8))
+		self.labelLogin.setText(QtGui.QApplication.translate("MainWindow", "Login", None, QtGui.QApplication.UnicodeUTF8))
+		self.labelPassword.setText(QtGui.QApplication.translate("MainWindow", "Password", None, QtGui.QApplication.UnicodeUTF8))
 
 	def connectSignals(self):
-		QtCore.QObject.connect(self.toolButton, QtCore.SIGNAL("clicked()"), self.selectFolder)
+		QtCore.QObject.connect(self.buttonSelectFolder, QtCore.SIGNAL("clicked()"), self.selectFolder)
 		QtCore.QObject.connect(self.centralwidget, QtCore.SIGNAL("folderIsSet(PyQt_PyObject)"), self.setFolder)
+		QtCore.QObject.connect(self.buttonSave, QtCore.SIGNAL("clicked()"), self.validateData)
+		
 
 	def selectFolder(self):
 		folder = QtGui.QFileDialog.getExistingDirectory(self.centralwidget, "Choose folder to sync", os.getenv("HOME"))
 		QtCore.QObject.emit(self.centralwidget, QtCore.SIGNAL("folderIsSet(PyQt_PyObject)"), folder)
 
 	def setFolder(self, folder):
-		self.lineEdit.setText(folder)
+		self.inputFolder.setText(folder)
 
-	def validateData(self, folder):
-		print "validating..."
+	def validateData(self):
+		validate = True
+		if (len(self.inputFolder.text()) == 0):
+			self.error("You haven't choose the dir to sync!")
+			validate = False
+		if (len(self.inputLogin.text()) == 0):
+			self.error("You havent enter the login!")
+			validate = False
+		if (len(self.inputPassword.text()) == 0):
+			self.error("You haven't enter the password!")
+			validate = False
+		if (validate):
+			self.setupSync({"folder": self.inputFolder.text(), "login": self.inputLogin.text(), "password": self.inputPassword.text()})
+
+	def setupSync(self, data):
+		self.out("setup start")
+		self.out("you will be prompted when proccess will have been finished")
+		#p = Popen(["/bin/sh", "./lettsync.sh", "-u", data["login"], "-p", data["password"], data["folder"]], stdout=PIPE)
+		print data
+		p = Popen(["./letssync.sh", "-u%(login)s" % data, "-p%(password)s" % data, "%(folder)s" % data])
+		if (p.wait() != 0):
+			self.error("an error occuring during setup!")
+		else:
+			self.out("setup complete!")	
+
+	def error(self, message):
+		self.out("ERROR: {}".format(message))
+
+	def out(self, message):
+		self.output.appendPlainText("{0} :: {1}".format(datetime.now().strftime("%H:%M"), message))
 
 app = QtGui.QApplication(sys.argv)
 w = QtGui.QMainWindow()

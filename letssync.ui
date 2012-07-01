@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>300</width>
-    <height>300</height>
+    <height>270</height>
    </rect>
   </property>
   <property name="font">
@@ -16,14 +16,14 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>TDS Dropbox setup</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="saveButton">
+   <widget class="QPushButton" name="buttonSave">
     <property name="geometry">
      <rect>
       <x>120</x>
-      <y>265</y>
+      <y>235</y>
       <width>71</width>
       <height>32</height>
      </rect>
@@ -37,21 +37,21 @@
      <string>Save</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="inputFolder">
     <property name="geometry">
      <rect>
       <x>130</x>
-      <y>40</y>
+      <y>10</y>
       <width>131</width>
       <height>23</height>
      </rect>
     </property>
    </widget>
-   <widget class="QToolButton" name="toolButton">
+   <widget class="QToolButton" name="buttonSelectFolder">
     <property name="geometry">
      <rect>
       <x>263</x>
-      <y>40</y>
+      <y>10</y>
       <width>27</width>
       <height>23</height>
      </rect>
@@ -69,30 +69,11 @@
      <enum>Qt::NoArrow</enum>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="labelFolder">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
-      <width>211</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>TDS dropbox setting up tool</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>43</y>
+      <y>13</y>
       <width>101</width>
       <height>16</height>
      </rect>
@@ -101,7 +82,17 @@
      <string>Folder to sync</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="inputLogin">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>40</y>
+      <width>161</width>
+      <height>23</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="inputPassword">
     <property name="geometry">
      <rect>
       <x>130</x>
@@ -111,17 +102,20 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_3">
+   <widget class="QLabel" name="labelLogin">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>100</y>
-      <width>161</width>
-      <height>23</height>
+      <x>10</x>
+      <y>42</y>
+      <width>62</width>
+      <height>16</height>
      </rect>
     </property>
+    <property name="text">
+     <string>Login</string>
+    </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="labelPassword">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -131,39 +125,32 @@
      </rect>
     </property>
     <property name="text">
-     <string>Login</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>102</y>
-      <width>62</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
      <string>Password</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit">
+   <widget class="QPlainTextEdit" name="output">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>130</y>
+      <y>100</y>
       <width>281</width>
       <height>131</height>
      </rect>
     </property>
     <property name="cursor" stdset="0">
-     <cursorShape>ForbiddenCursor</cursorShape>
+     <cursorShape>IBeamCursor</cursorShape>
     </property>
-    <property name="verticalScrollBarPolicy">
-     <enum>Qt::ScrollBarAsNeeded</enum>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
     </property>
-    <property name="horizontalScrollBarPolicy">
-     <enum>Qt::ScrollBarAlwaysOn</enum>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+    <property name="plainText">
+     <string notr="true"/>
     </property>
    </widget>
   </widget>
