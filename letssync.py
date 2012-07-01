@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 # Form implementation generated from reading ui file 'letssync.ui'
@@ -104,8 +104,6 @@ class Ui_MainWindow(object):
 	def setupSync(self, data):
 		self.out("setup start")
 		self.out("you will be prompted when proccess will have been finished")
-		#p = Popen(["/bin/sh", "./lettsync.sh", "-u", data["login"], "-p", data["password"], data["folder"]], stdout=PIPE)
-		print data
 		p = Popen(["./letssync.sh", "-u%(login)s" % data, "-p%(password)s" % data, "%(folder)s" % data])
 		if (p.wait() != 0):
 			self.error("an error occuring during setup!")
