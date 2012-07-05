@@ -78,7 +78,7 @@ rsync=`whereis rsync`
 
 # First sync
 echo "First sync. Please wait..."
-$rsync --update --progress --times --exclude-from $HOME/.rsyncexclude --recursive --stats --password-file=$HOME/.rsyncpass $folder/ rsync://$login@tech.tdigitals.ru/dropbox/
+$rsync --update --progress --delete --times --exclude-from $HOME/.rsyncexclude --recursive --stats --password-file=$HOME/.rsyncpass rsync://$login@tech.tdigitals.ru/dropbox/ $folder/
 
 # Creating crontab-file
 echo "MAILTO=\"\"
