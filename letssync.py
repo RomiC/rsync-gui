@@ -8,7 +8,6 @@
 #
 # WARNING! All changes made in this file will be lost!
 import sys, os
-from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import QRect, Qt, QMetaObject, QObject, QString, SIGNAL
 from PyQt4.QtGui import QWidget, QMainWindow, QPushButton, QToolButton, QLineEdit, QLabel, QPlainTextEdit, QApplication, QCursor, QFileDialog
 from datetime import datetime

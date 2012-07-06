@@ -82,7 +82,7 @@ $rsync --update --progress --delete --times --exclude-from $HOME/.rsyncexclude -
 
 # Creating crontab-file
 echo "MAILTO=\"\"
-*/3 * * * * if [ \`ps x | grep -v grep | grep rsync | wc -l\` -eq 0 ]; then $rsync --update --times --delete --exclude-from $HOME/.rsyncexclude --recursive --stats --password-file=$HOME/.rsyncpass rsync://$login@tech.tdigitals.ru/dropbox/ $folder/ && $rsync --update --times --exclude-from $HOME/.rsyncexclude --recursive --stats --password-file=$HOME/.rsyncpass $folder/ rsync://$login@tech.tdigitals.ru/dropbox/;else echo \"syncing is in process\";fi" > $HOME/crontab
+*/3 * * * * if [ \`ps x | grep -v grep | grep rsync | wc -l\` -eq 0 ]; then $rsync --update --times --exclude-from $HOME/.rsyncexclude --recursive --stats --password-file=$HOME/.rsyncpass $folder/ rsync://$login@tech.tdigitals.ru/dropbox/ && $rsync --update --times --delete --exclude-from $HOME/.rsyncexclude --recursive --stats --password-file=$HOME/.rsyncpass rsync://$login@tech.tdigitals.ru/dropbox/ $folder/;else echo \"syncing is in process\";fi" > $HOME/crontab
 # And adding crontasks
 crontab $HOME/crontab && rm $HOME/crontab
 
